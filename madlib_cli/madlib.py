@@ -1,3 +1,5 @@
+import re
+
 def print_welcome_message():
     print("""
         Let's make a Madlib!
@@ -15,16 +17,23 @@ def print_user_prompst():
 
 def read_template(text):
     with open(text) as file:
-        return file.read()
+        content = file.read().strip()
+        return content
 
-def parse_template():
-    pass
+def parse_template(template):
+    parts_of_speech = re.findall(r"\{(.*?)\}", template)
+    stripped_template = re.sub(r"\{.*?\}", "{}", template)
+    return stripped_template, tuple(parts_of_speech)
 
-def merge():
-    pass
+
+def merge(stripped_template, parts):
+    return stripped_template.format(*parts)
 
 
 if __name__ == "__main__":
     print_welcome_message()
-    print_user_prompst()
-    read_template("./assets/dark_and_stormy_night_template.txt")
+    user_inputs = print_user_prompst()
+    template = read_template("./assets/dark_and_stormy_night_template.txt")
+    stripped_template, parts_of_speech = parse_template(template)
+    completed_madlib = merge(stripped_template, user_inputs)
+    print(completed_madlib)
