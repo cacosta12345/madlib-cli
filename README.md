@@ -25,8 +25,10 @@ Run Python file:
 
 pytest
 
-I haven't completed the parse_template or merge tests
+tests/test_madlib.py
 
 ## Notes
 
-I haven't completed the lab yet. So far I can display the welcome message and ask the user for prompts (the words to use in the madlib). I am still working through parsing the template to take out the placeholders {}. Then I need to replace the placeholders with the user input. 
+Code now successfully passes all tests thanks to JB's lectures today. It also successfully prompts users with welcome message, words to type, and displays the completed madlib.
+
+The completed madlib is in the assets folder under completed_video_game_madlib.txt
