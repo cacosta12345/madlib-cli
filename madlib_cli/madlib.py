@@ -9,11 +9,12 @@ def print_welcome_message():
         When you are done, I will read out your Madlib!
           """)
 
-def print_user_prompst():
-    adj_one = input("Type an Adjective > ")
-    adj_two= input("Type another Adjective > ")
-    adj_three= input("Type a Noun > ")
-    return adj_one,adj_two,adj_three
+def print_user_prompst(parts_of_speech):
+    user_inputs = []
+    for part in parts_of_speech:
+        response = input(f"Type a(n) {part} > ")
+        user_inputs.append(response)
+    return user_inputs
 
 def read_template(text):
     with open(text) as file:
@@ -32,8 +33,8 @@ def merge(stripped_template, parts):
 
 if __name__ == "__main__":
     print_welcome_message()
-    user_inputs = print_user_prompst()
-    template = read_template("./assets/dark_and_stormy_night_template.txt")
+    template = read_template("./assets/video_game.txt")
     stripped_template, parts_of_speech = parse_template(template)
+    user_inputs = print_user_prompst(parts_of_speech)
     completed_madlib = merge(stripped_template, user_inputs)
     print(completed_madlib)
